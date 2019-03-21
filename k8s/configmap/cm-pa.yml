@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: service-config-a
+data:
+  application.properties: |-
+    abc.pa: abc-pa

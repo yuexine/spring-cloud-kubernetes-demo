@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: service-a
+
+# 开启hystrix做断路器
+feign:
+  hystrix:
+    enabled: true
+
+# 配置刷新需要开启这个端点
+management:
+  endpoint:
+    restart:
+      enabled: true
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'

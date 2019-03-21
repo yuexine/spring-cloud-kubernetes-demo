@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: service-a-secret
+type: Opaque
+data:
+  abc.ps: YWJjLXBz

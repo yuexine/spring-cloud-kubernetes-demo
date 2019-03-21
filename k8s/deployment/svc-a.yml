@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-a
+  labels:
+    app: service-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-a
+  template:
+    metadata:
+      labels:
+        app: service-a
+    spec:
+      containers:
+        - name: service-a
+          image: registry.3incloud.com/service-a:1.0-SNAPSHOT
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+          env:
+            - name: "KUBERNETES_NAMESPACE"
+              valueFrom:
+                fieldRef:
+                  fieldPath: "metadata.namespace"
+      imagePullSecrets:
+        - name: gyhlw-registry
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-a
+  labels:
+    app: service-a
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      protocol: TCP
+  selector:
+    app: service-a

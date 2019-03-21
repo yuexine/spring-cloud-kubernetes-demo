@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true # 允许配置刷新
+
+      config:
+        enabled: true
+        sources:
+          - name: service-config-a
+          - name: service-config-b
+      secrets:
+        enabled: true
+        name: service-a-secret
